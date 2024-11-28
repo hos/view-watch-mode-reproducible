@@ -1,0 +1,25 @@
+{
+  version: 1,
+  config: {
+    /*
+     * There can be entries here for:
+     *
+     * - `class`: for tables, composite types, views and materialized views
+     * - `attribute`: for columns/attributes (of any 'class' type)
+     * - `constraint`: for table constraints
+     * - `procedure`: for functions/procedures
+     */
+    class: {
+      "public.sea_view": {
+        tags: {
+          foreignKey: "(non_developer_user_id) references public.users (id)|@behavior +connection -list",
+        },
+        attribute: {
+          non_developer_user_id: {
+            tags: { behavior: "+manyRelation:resource:list -connection +list" },
+          },
+        },
+      },
+    },
+  },
+}
